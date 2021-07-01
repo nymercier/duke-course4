@@ -15,3 +15,5 @@ After completing this course, you will be able to:
 8. Appropriately hide implementation decisions so they are not visible in public methods; and
 9. Recognize the limitations of algorithms and Java programs in solving problems.
 10. Recognize standard Java classes and idioms including exception-handling, static methods, java.net, and java.io packages.
+
+https://www.coursera.org/learn/java-programming-design-principles?specialization=java-programming
