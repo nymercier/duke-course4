@@ -1,0 +1,32 @@
+
+/**
+ * Write a description of DistanceFilter here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+
+public class DistanceFilter implements Filter {
+    //private double min;
+    private Location loc;
+    private double max;
+    private String name;
+    
+    public DistanceFilter(double distMax, Location from, String name) { 
+        //min = minDist;
+        max = distMax;
+        loc = from;
+        //name = DistanceFilter.getName();
+    } 
+
+    public boolean satisfies (QuakeEntry qe) {
+
+        return qe.getLocation().distanceTo(loc) < max;
+    }
+    
+    public String getName() {
+        //System.out.println("yo"+name);
+        //name = DistanceFilter.getName();
+        return name;
+    }
+}
