@@ -1,0 +1,97 @@
+
+/**
+ * Write a description of LargestQuakes here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+
+import java.util.*;
+import edu.duke.*;
+import java.io.*;
+
+public class LargestQuakes {
+   
+    public int indexOfLargest (ArrayList<QuakeEntry> quakeData) {
+
+        int indexmax = 0;
+        double maxmagn = 0;
+        int myIndex = 0;
+        
+        for (QuakeEntry qe : quakeData) {
+            //myIndex = quakeData.indexOf(qe);
+            //System.out.println(myIndex);
+            double currmagn = qe.getMagnitude();
+            int currIndex = quakeData.indexOf(qe);
+            //double newdata = new Double(currmagn);
+            //int maxmg = newdata.intValue();
+            //String answ = qe.toString();
+            //int index = qe.indexOf("a");
+            if (currmagn > maxmagn) {
+                maxmagn = currmagn;
+                myIndex = currIndex;
+                //System.out.println("maxmagn "+maxmagn);
+                //System.out.println("myIndex "+myIndex);
+                //indexmax++;indexmax = 
+            }
+            //String max = maxmagn.toString();
+            //indexmax = indexOf(maxmagn);
+            //System.out.println(indexmax);
+        } 
+        //System.out.println("index "+myIndex);
+        //System.out.println("maxmagn "+maxmagn);
+        return myIndex;
+    }
+   
+    public ArrayList <QuakeEntry> getLargest (ArrayList <QuakeEntry> quakeData,
+                                              int howMany) {
+        ArrayList<QuakeEntry> copy = new ArrayList<QuakeEntry>(quakeData);
+        //create a copy because we don't have to erase it forever
+        ArrayList<QuakeEntry> ret = new ArrayList<QuakeEntry>();
+        
+        int largest = 0;
+        //where largest magn
+        for(int j=0; j < howMany; j++) {
+            
+            for(int k=0; k < copy.size(); k++){
+                QuakeEntry quake = copy.get(k);
+                //double currmagn = quake.getMagnitude();
+                //System.out.println(currmagn);
+                //if (currmagn > 0) {
+                    //largest = currmagn;
+                //}
+                largest= indexOfLargest(copy);
+                
+            }
+            //copy.get(largest);
+            ret.add(copy.get(largest));
+            copy.remove(largest);
+        }
+        return ret;
+    }
+    
+    public void findLargestQuakes(){
+        EarthQuakeParser parser = new EarthQuakeParser();
+        //String source = "data/nov20quakedatasmall.atom";
+        String source = "data/nov20quakedata.atom";
+        //String source = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
+        ArrayList<QuakeEntry> list  = parser.read(source);
+        System.out.println("read data for " + list.size());
+        
+        int largest = indexOfLargest(list);
+        System.out.println("Index findLargestQuakes "+largest);
+        
+        //for (QuakeEntry qe : list) {
+            //qe.getMagnitude();
+            //System.out.println("réponse "+largest);
+        //}
+        
+        ArrayList<QuakeEntry> largestlist = getLargest(list,50);
+        for (QuakeEntry qe : largestlist) {
+            //qe.getMagnitude();
+            System.out.println("réponse "+qe);
+            //System.out.println("number found: " + list.size());
+        }
+    }
+
+}
