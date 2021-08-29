@@ -1,0 +1,32 @@
+
+/**
+ * Décrivez votre classe MagnitudeFilter ici.
+ *
+ * @author (votre nom)
+ * @version (un numéro de version ou une date)
+ */
+
+import java.io.*;
+import java.lang.*;
+
+public class MagnitudeFilter implements Filter {
+    private double min;
+    private double max;
+    private String name;
+    
+    public MagnitudeFilter(double minMag, double maxMag, String name) { 
+        min = minMag;
+        max = maxMag;
+        name =name;
+    } 
+
+    public boolean satisfies (QuakeEntry qe) {
+        
+        return qe.getMagnitude() >= min &&
+               qe.getMagnitude() <= max;
+    } 
+    
+    public String getName() {
+        return name;
+    }
+}
