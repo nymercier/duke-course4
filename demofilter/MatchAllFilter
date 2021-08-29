@@ -1,0 +1,48 @@
+
+/**
+ * Write a description of match here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+
+import edu.duke.*;
+import java.io.*;
+import java.util.*;
+//import java.io.File.getName.*;
+import java.io.File.*;
+import java.lang.Exception.*;
+
+public class MatchAllFilter implements Filter {
+    private ArrayList <Filter> filters;
+    //private ArrayList <String> namefilters;
+    private String name;
+    //public String getName(){
+    //}
+    
+    public MatchAllFilter () { 
+        filters = new ArrayList <Filter> ();
+        //namefilters = new ArrayList <String> ();
+    } 
+
+    public void addfilter(Filter f) {
+        filters.add(f);
+        //namefilters.add(f.getName());
+        //System.out.println();
+        //name = "name";
+    }
+            
+    public boolean satisfies (QuakeEntry qe) {
+        for (Filter f : filters) {
+            if (!f.satisfies(qe)) {
+                //System.out.println(f.getName());
+                return false;
+            }
+        }
+        return true;
+    } 
+    
+    public String getName() {
+        return name;
+    }
+}
