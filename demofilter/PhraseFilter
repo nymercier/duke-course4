@@ -1,0 +1,35 @@
+
+/**
+ * Write a description of PhraseFilter here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+
+public class PhraseFilter implements Filter{
+    private String ou;
+    private String rech;
+    private String name;
+    
+    public PhraseFilter (String where, String phrase, String name) { 
+        //min = minDist;
+        ou = where;
+        rech = phrase;
+    } 
+
+    public boolean satisfies (QuakeEntry qe) {
+        //if (qe.getInfo().contains(rech)) {
+            String getinfo = qe.getInfo();
+            
+            //if (
+            return qe.getInfo().contains(rech) && ou.equals("start") && getinfo.startsWith(rech)
+                || qe.getInfo().contains(rech) && ou.equals("end") && getinfo.endsWith(rech)
+                || qe.getInfo().contains(rech) && ou.equals("any") && getinfo.contains(rech);
+        //}
+    }
+    
+    public String getName() {
+        return name;
+    }
+}
+
